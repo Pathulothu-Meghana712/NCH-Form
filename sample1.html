@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Container</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+      html{
+        overflow: hidden;
+      }
+
+      @media screen and (max-width:600px){
+        .Outter-Block {
+        box-sizing: border-box;
+        margin: 5px;
+        padding: 0px !important;
+        height: 100vh
+
+      }
+      }
+     
+
+      .Outter-Block {
+        box-sizing: border-box;
+        margin: 5px;
+        height: 100vh;
+        padding-left: 5%;
+
+      }
+      
+      /*Form title styling*/
+      .formTitle {
+        text-align: center;
+        margin: 10px;
+      }
+      /*Span text color styling*/
+      .danger-text{
+        color: red;
+      }
+      /*submit button Styling*/
+      .btn-warning{
+        background-color: #E88247;
+        border: none;
+        color: white;
+        border-radius: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .btn-warning:hover{
+        background-color: #E88247;
+        color: white;
+      }
+      /*Dropdown styling*/
+      .bootstrap-select > .dropdown-toggle.bs-placeholder{
+        color: #999;
+        background:white;
+        }
+        .filter-option {
+       background-color: white;
+    border: 1px solid rgb(206, 212, 218);
+    border-radius: 5px;
+    padding: 10px;
+    padding-right: 40px; /* Space for the custom arrow */
+    background-color: white;
+    width: 100%;
+}
+
+.filter-option::after {
+    content: "";
+    position: absolute;
+    right: 10px; /* Position on the right side */
+    top: 50%;
+    transform: translateY(-50%); /* Centers vertically */
+     border: solid #E88247; /* Arrow color */
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: translateY(-50%) rotate(45deg); /* Creates the downward arrow */
+}
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+ 
+      .dropdown-menu.show {
+        max-width:100%;
+        width: 100%;
+      }
+      /*Error messages*/
+      .error {
+        color: red;
+        font-size: 12px;
+        margin-top: -5px;
+        margin-bottom: 10px;
+      }
+      .error-input {
+        border: 1px solid red;
+      }
+
+      .bootstrap-select .dropdown-toggle .filter-option-inner-inner{
+        font-weight: 400;
+        color: black;
+      }
+
+
+
+    </style>
+  </head>
+  <body>
+    <!--Form title block -->
+    <div class="Outter-Block">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <h6 class="formTitle">
+              Call 800-000-0000 for immediate service, or fill in the form below
+              and we will contact you.
+            </h6>
+          </div>
+        </div>
+      <!--Form fields-->
+          <form id="contactForm" novalidate>
+        <div class="container-fluid">
+          <!--Question1 Dropdown-->
+            <div class="form-group .col-xl-auto">
+              <select
+                id="Question1"
+                class="form-control selectpicker filter-option"
+                data-width="100%"
+                title="*What option best describes your company's furnished housing
+                needs?"
+                single
+                required
+              >
+                <option>Intern program</option>
+                <option>Rotational program for project-based work</option>
+                <option>Travel or temporary assignments</option>
+                <option>Relocations</option>
+                <option>I'm not sure</option>
+              </select>
+              <span
+                id="question1Error"
+                class="error"
+              ></span>
+            </div>
+        </div>
+          <!--All remaining fields -->                    
+          <div class="container-fluid">
+            <div class="form-row"> 
+            <!--Firstname-->
+            <div class="form-group col-md-6">
+              <input
+                type="text"
+                class="form-control"
+                style="font-weight: 400;color: black;"
+                id="FirstName"
+                placeholder="*First Name"
+                required
+              />
+              <span
+                id="firstNameError"
+                class="error"
+              ></span>
+            </div>
+            <!--Lastname-->
+            <div class="form-group col-md-6">
+              <input
+                type="text"
+                class="form-control"
+                id="LastName"
+                placeholder="*Last Name"
+                required
+              />
+              <span
+                id="lastNameError"
+                class="error"
+              ></span>
+            </div>
+            <!--Email-->
+            <div class="form-group col-md-12">
+              <input
+                type="email"
+                class="form-control"
+                id="Email"
+                placeholder="*Email "
+                required
+              />
+              <span
+                id="emailError"
+                class="error"
+              ></span>
+            </div>
+            <!--Comapany-->
+            <div class="form-group col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                id="Company"
+                placeholder="*Company"
+                required
+              />
+              <span
+                id="companyError"
+                class="error"
+              ></span>
+            </div>
+            <!--Title-->
+            <div class="form-group col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                id="Title"
+                placeholder="*Title"
+                required
+              />
+              <span
+                id="titleError"
+                class="error"
+              >
+            </span>
+            </div>
+            <!--Mobile-->
+            <div class="form-group col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                id="Phone"
+                placeholder="Phone"
+                pattern="^\d{10}$"
+                required
+              />
+              <span
+                id="phoneError"
+                class="error"
+              ></span>
+            </div>
+          </div>
+        </div>
+          <!--Question2 dropdown 2 splits-->
+            <div class="container-fluid">
+                    <div class="form-row">
+                              <div class="form-group col-md-6 question-2" style="display: none;">
+                               <select
+                                  class="selectpicker"
+                                  id="Question2-1"
+                                  data-width="100%"
+                                  data-container="body"    
+                                  data-container="body"
+                                  data-dropup-auto="false"  
+                                  data-bs-popper="none"       
+                                  single
+                                  title="What month does your housing need begin?"                    
+                                >
+                                  <option value="1">January</option>
+                                  <option value="2">February</option>
+                                  <option value="3">March</option>
+                                  <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                  </optgroup>
+                                </select>
+                              </div>
+                              <div class="form-group col-md-6 question-2" style="display: none;">
+                              <select
+                                    class="selectpicker"
+                                    id="Question2-2"
+                                    data-width="100%"
+                                    data-container="body"    
+                                    data-container="body"
+                                  data-dropup-auto="false"
+                                  data-bs-popper="none"         
+                                    single
+                                    title="What month does your housing need end?"                    
+                                  >
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                      <option value="5">May</option>
+                                      <option value="6">June</option>
+                                      <option value="7">July</option>
+                                      <option value="8">August</option>
+                                      <option value="9">September</option>
+                                      <option value="10">October</option>
+                                      <option value="11">November</option>
+                                      <option value="12">December</option>
+                                    </optgroup>
+                                  </select>
+                                </div>
+                    </div>
+            </div>
+          <div class="container-fluid">
+            <div class="form-group .col-xl-auto">
+              <select
+              id="Question3"
+              class="selectpicker"
+              data-width="100%"
+              title="How many employees do you estimate will need housing this year?"
+              >
+              <option>Less than 20</option>
+              <option>20-50</option>
+              <option>More than 50</option>
+              <option>I'm not sure</option>
+               </select>
+            </div>
+          </div>
+            
+            
+<div
+class="form-group col-md-12 d-flex flex-wrap justify-content-between align-items-center"
+>
+<p class="mb-4" style="margin-left: 30px;">
+  Fields marked with <span class="danger-text">*</span> are required.
+</p>      
+
+  <div class="form-group col-md-1">
+
+    
+  </div>      
+<button
+  type="submit"
+  class="btn btn-warning col-md-2 ml-auto"
+  style="margin-right: 30px;"
+>
+  Submit
+</button>
+</div>
+      
+
+        </form>
+    </div>
+    </div>
+
+    <div class="input-group date" data-provide="datepicker">
+      <input type="text" class="form-control">
+      <div class="input-group-addon">
+        <span class="glyphicon glyphicon-th"></span>
+    </div>
+
+    <div class="input-group date" data-provide="datepicker">
+      <input type="text" class="form-control">
+      <div class="input-group-addon">
+          <span class="glyphicon glyphicon-th"></span>
+      </div>
+  </div>
+
+  <div class="container">
+    <div class='col-md-5'>
+       <div class="form-group">
+          <div class='input-group date' id='datetimepicker6'>
+             <input type='text' class="form-control" />
+             <span class="input-group-addon">
+             <span class="glyphicon glyphicon-calendar"></span>
+             </span>
+          </div>
+       </div>
+    </div>
+    <div class='col-md-5'>
+       <div class="form-group">
+          <div class='input-group date' id='datetimepicker7'>
+             <input type='text' class="form-control" />
+             <span class="input-group-addon">
+             <span class="glyphicon glyphicon-calendar"></span>
+             </span>
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+    </div>
+    <div class="container">
+      <div class="row">
+         <div class='col-sm-6'>
+            <div class="form-group">
+               <div class='input-group date' id='datetimepicker1'>
+                  <input type='text' class="form-control" />
+                  <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+               </div>
+            </div>
+         </div>
+         <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+         </script>
+      </div>
+   </div>
+
+    <!--Scripting-->
+    <script>
+      $(document).ready(function () {
+        // Initialize the selectpicker
+        $(".selectpicker").selectpicker();
+        $(".Question-2").parent().hide();
+       
+        // Toggle visibility of Question2 based on Question1 selection
+        $("#Question1").on("change", function () {
+          const selectedValue = $(this).val();
+          if (
+            selectedValue === "Intern program" ||
+            selectedValue === "Rotational program for project-based work"
+               
+          ) {
+            $(".question-2").css("display","block");
+            $("#Question2-1").selectpicker("refresh");
+            $("#Question2-2").selectpicker("refresh");
+            console.log("Question2 shown");
+
+
+          } 
+          else {
+            $(".question-2").css("display", "none");
+               $("#Question2-1").val("");$("#Question2-2").val(""); // Reset Question2's value when hidden
+      $("#Question2-1").selectpicker("refresh");$("#Question2-2").selectpicker("refresh"); // Refresh to reflect changes
+      console.log("Question2 hidden");
+                      }
+
+        });
+        
+      });
+      $('#datetimepicker6').datetimepicker();
+       $('#datetimepicker7').datetimepicker({
+   useCurrent: false //Important! See issue #1075
+   });
+       $("#datetimepicker6").on("dp.change", function (e) {
+           $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+       });
+       $("#datetimepicker7").on("dp.change", function (e) {
+           $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+       }); 
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (event) {
+          let isValid = true;
+          const fields = [
+            {
+              id: "FirstName",
+              errorId: "firstNameError",
+              message: "First name is required.",
+            },
+            {
+              id: "LastName",
+              errorId: "lastNameError",
+              message: "Last name is required.",
+            },
+            {
+              id: "Email",
+              errorId: "emailError",
+              message: "Please enter a valid email address.",
+              regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            },
+            {
+              id: "Phone",
+              errorId: "phoneError",
+              message: "Please enter a valid 10-digit phone number.",
+              regex: /^\d{10}$/,
+            },
+            {
+              id: "Question1",
+              errorId: "question1Error",
+              message: "Please select an option.",
+            },
+            {
+              id: "Company",
+              errorId: "companyError",
+              message: "Company name is required.",
+            },
+            {
+              id: "Title",
+              errorId: "titleError",
+              message: "Title is required.",
+            },
+          ];
+
+          fields.forEach((field) => {
+            const input = document.getElementById(field.id);
+            const error = document.getElementById(field.errorId);
+
+            if (
+              !input.value.trim() ||
+              (field.regex && !field.regex.test(input.value))
+            ) {
+              isValid = false;
+              error.textContent = field.message;
+              input.classList.add("error-input");
+            } else {
+              error.textContent = "";
+              input.classList.remove("error-input");
+            }
+          });
+
+          if (!isValid) {
+            event.preventDefault();
+          }
+        });
+       
+    </script>
+
+
+
+  </body>
+</html>
